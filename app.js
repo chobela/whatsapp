@@ -8,6 +8,9 @@ const PORT = process.env.PORT || 5050;
 
 const client = new Client({
   authStrategy: new LocalAuth(),
+  puppeteer: {
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  },
 });
 
 // Flipped true once WhatsApp Web finishes loading. /send refuses until then.
@@ -84,12 +87,10 @@ app.post("/send", async (req, res) => {
     const sent = await client.sendMessage(chatId, message);
     return res.json({ ok: true, id: sent.id ? sent.id._serialized : null });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        ok: false,
-        error: String(err && err.message ? err.message : err),
-      });
+    return res.status(500).json({
+      ok: false,
+      error: String(err && err.message ? err.message : err),
+    });
   }
 });
 
