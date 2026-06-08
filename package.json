@@ -1,0 +1,14 @@
+{
+  "name": "whatsapp-service",
+  "version": "1.0.0",
+  "description": "Self-hosted WhatsApp send service for the FDM platform",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.23.0"
+  }
+}
